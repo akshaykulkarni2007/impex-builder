@@ -42,9 +42,18 @@ a.add-row {
 .impex-output {
   height: 300px;
   position: fixed;
-  bottom: 0;
+  bottom: 50px;
   width: 100%;
   background: #f9f9f9;
   border-top: 1px solid;
+  border-bottom: 1px solid;
   overflow-y: scroll;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 20px;
 }
