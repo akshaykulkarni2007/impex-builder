@@ -1,19 +1,46 @@
+body {
+  font-family: Playfair Display, sans-serif;
+}
 h3.main-title {
   margin: 20px auto;
   text-transform: uppercase;
+  font-family: Oswald;
+
+  small {
+    display: block;
+    margin: 20px 0;
+    text-transform: capitalize;
+    @extend body;
+  }
+}
+.btn {
+  padding: 6px 14px;
 }
 
 .build-container {
   padding-bottom: 500px;
+  margin-top: 40px;
 }
 #main-table {
+
+  thead label {
+    border: 1px solid #efefef;
+    padding: 5px;
+    cursor: text;
+    font-weight: 600;
+  }
+  tfoot tr td {
+    border-top: none;
+  }
+
   tbody tr td:last-of-type {
     width: 40px !important;
     min-width: 40px;
     vertical-align: middle;
+    border-top: none;
   }
 
-  a.add-col,
+  a.table-button,
   a.add-row {
     font-size: 18px;
     border: 1px solid;
@@ -22,6 +49,13 @@ h3.main-title {
     text-decoration: none;
     margin: 10px 0;
 
+    &.delete-row {
+      display: inline-block;
+      margin: 0;
+      width: initial;
+      margin-left: 20px;
+    }
+
     &:active,
     &:hover,
     &:active:focus {
@@ -29,24 +63,23 @@ h3.main-title {
     }
 
   }
-  a.add-row {
-    display: inline-block;
-    width: 20%;
-    padding: 15px;
-  }
+
+
 }
 a.add-row {
-  padding: 15px 22px;
+  padding: 15px 25px;
   border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
 }
 .impex-output {
-  height: 300px;
+  height: 250px;
   position: fixed;
   bottom: 50px;
+  left: 0;
   width: 100%;
-  background: #f9f9f9;
+  background: #efefef;
   border-top: 1px solid;
-  border-bottom: 1px solid;
   overflow-y: scroll;
 }
 
@@ -54,6 +87,9 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  border-top: 1px solid;
   padding: 10px 15px;
   font-size: 20px;
+  background: #0089CD;
+  color: #fff;
 }

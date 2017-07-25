@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Impex Generator</title>
+    <link href="assets/fonts/Oswald-Regular.ttf" rel="stylesheet">
+    <link href="assets/fonts/PlayfairDisplay-Regular.ttf" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <!--[if lt IE 9]>
@@ -18,10 +20,21 @@
       <div class="row">
         <div class="col-xs-12">
 
-          <h3 class="main-title">impex builder</h3>
+          <h3 class="main-title">impex builder <br><small>Tiny tool to create Hybris ImpEX files</small></h3>
 
           <div class="build-container">
             <table class="table table-hover table-striped" id="main-table">
+
+              <thead>
+                <tr>
+                  <td><label contenteditable="true"></label></td>
+                  <td><label contenteditable="true"></label></td>
+                  <td><label contenteditable="true"></label></td>
+                  <td><label contenteditable="true"></label></td>
+                  <td><label contenteditable="true"></label></td>
+                  <td><label contenteditable="true"></label></td>
+                </tr>
+              </thead>
 
               <tbody>
                 <tr>
@@ -30,8 +43,8 @@
                   <td><input type="text" class="ip"></td>
                   <td><input type="text" class="ip"></td>
                   <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><a href="#" class="add-col btn btn-block btn-success">+</a><a href="#" class="add-col delete btn btn-block btn-danger">-</a></td>
+                  <td><input type="text" class="ip"><a href="#" class="table-button delete-row btn btn-block btn-danger" title="Delete Row">-</a></td>
+                  <td><a href="#" class="table-button add-column btn btn-block btn-success" title="Add Column">+</a></td>
                 </tr>
                 <tr>
                   <td><input type="text" class="ip"></td>
@@ -39,7 +52,15 @@
                   <td><input type="text" class="ip"></td>
                   <td><input type="text" class="ip"></td>
                   <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"><a href="#" class="table-button delete-row btn btn-block btn-danger" title="Delete Row">-</a></td>
+                </tr>
+                <tr>
                   <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"><a href="#" class="table-button delete-row btn btn-block btn-danger" title="Delete Row">-</a></td>
 
                 </tr>
                 <tr>
@@ -48,26 +69,27 @@
                   <td><input type="text" class="ip"></td>
                   <td><input type="text" class="ip"></td>
                   <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-
-                </tr>
-                <tr>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
+                  <td><input type="text" class="ip"><a href="#" class="table-button delete-row btn btn-block btn-danger" title="Delete Row">-</a></td>
 
                 </tr>
               </tbody>
 
+              <tfoot>
+                <tr>
+                  <td><a href="#" class="table-button delete btn btn-danger" title="Delete Column">-</a></td>
+                  <td><a href="#" class="table-button delete btn btn-danger" title="Delete Column">-</a></td>
+                  <td><a href="#" class="table-button delete btn btn-danger" title="Delete Column">-</a></td>
+                  <td><a href="#" class="table-button delete btn btn-danger" title="Delete Column">-</a></td>
+                  <td><a href="#" class="table-button delete btn btn-danger" title="Delete Column">-</a></td>
+                  <td><a href="#" class="table-button delete btn btn-danger" title="Delete Column">-</a></td>
+                </tr>
+              </tfoot>
+
             </table>
 
             <div class="add-row-container">
-              <a href="#" class="add-row btn btn-success">+</a>
-              <a href="#" class="add-row btn btn-info">+5</a>
-              <a href="#" class="add-row delete btn btn-danger">-</a>
+              <a href="#" class="add-row btn btn-success" title="Add Row">+</a>
+              <a href="#" class="add-row btn btn-info" title=" Add 5 Rows">+5</a>
             </div>
           </div>
 
@@ -80,7 +102,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="assets/js/functions.js"></script>
   </body>
 
