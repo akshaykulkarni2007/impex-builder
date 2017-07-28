@@ -65,8 +65,11 @@ $(document).on('impex-updated',function(e){
 });
 
 $(document).on('content-refresh',function(){
-    printTable(impex_data);
-    printImpexOutput(impex_data);
+  if(impex_data.length === 0 || impex_data[0].length ===0){
+      impex_data = [['']];
+  }
+  printTable(impex_data);
+  printImpexOutput(impex_data);
 });
 
 function printImpexOutput(impex_data) {
