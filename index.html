@@ -21,67 +21,68 @@
           <h3 class="main-title">impex builder</h3>
 
           <div class="build-container">
-            <table class="table table-hover table-striped" id="main-table">
+          <div class="row">
+            <div class="pull-left">
+              <table class="table table-hover table-striped" id="main-table">
 
-              <tbody>
-                <tr>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><a href="#" class="add-col btn btn-block btn-success">+</a><a href="#" class="add-col delete btn btn-block btn-danger">-</a></td>
-                </tr>
-                <tr>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-
-                </tr>
-                <tr>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-
-                </tr>
-                <tr>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-                  <td><input type="text" class="ip"></td>
-
-                </tr>
-              </tbody>
-
-            </table>
-
-            <div class="add-row-container">
-              <a href="#" class="add-row btn btn-success">+</a>
-              <a href="#" class="add-row btn btn-info">+5</a>
-              <a href="#" class="add-row delete btn btn-danger">-</a>
+              </table>
+            </div>
+            <div>
+              <span class="add-row btn btn-success addColumn"> + </span>
             </div>
           </div>
+          <div class="row">
+              <span class="add-row btn btn-success addRow" data-count="1"> + </span>
+              <span class="add-row btn btn-success addRow" data-count="5"> +5 </span>
+          </div>
 
+          </div>
+          
+          <div class="impex-output">
 
-          <div class="impex-output"></div>
+          </div>
 
         </div>
       </div>
     </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="assets/js/functions.js"></script>
+    
+
+    <script id="impex-table" type="text/x-handlebars-template">
+        {{#each rows}}
+            <tr>
+              {{#each this}}
+                <td><input type="text" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
+              {{/each}}
+              <td>
+                <div href="#" class="delete btn btn-block btn-danger removeRow" data-row="{{@index}}">-</div>
+              </td>
+            </tr>
+        {{/each}}
+        <tr>
+          {{#each rows.[0]}}
+            <td><div href="#" class="delete btn btn-block btn-danger removeColumn" data-col="{{@index}}">-</div></td>
+          {{/each}}
+        </tr>
+
+    </script>
+
+
+    <script id="impex-out" type="text/x-handlebars-template">
+        {{#each rows}}
+            <div>
+              {{#each this}}
+                {{this}};
+              {{/each}}
+            </div>
+        {{/each}}
+    </script>
+        
   </body>
 
   <footer>
