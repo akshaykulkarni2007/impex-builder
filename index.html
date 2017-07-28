@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Impex Generator</title>
+    <link href="assets/fonts/Oswald-Regular.ttf" rel="stylesheet">
+    <link href="assets/fonts/PlayfairDisplay-Regular.ttf" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <!--[if lt IE 9]>
@@ -18,26 +20,33 @@
       <div class="row">
         <div class="col-xs-12">
 
-          <h3 class="main-title">impex builder</h3>
+          <h3 class="main-title">impex builder <br><small>Tiny tool to create Hybris ImpEX files</small></h3>
 
           <div class="build-container">
-          <div class="row">
-            <div class="pull-left">
-              <table class="table table-hover table-striped" id="main-table">
 
-              </table>
+            <div class="row">
+
+              <div class="col-xs-12">
+                <div class="pull-left">
+                  <table class="table table-hover table-striped table-responsive" id="main-table">
+
+                  </table>
+                </div>
+                <div class="add-row-container">
+                  <span class="add-row btn btn-success addColumn"> + </span>
+                </div>
+              </div>
             </div>
-            <div>
-              <span class="add-row btn btn-success addColumn"> + </span>
+
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="add-row btn btn-success addRow" data-count="1"> + </span>
+                <span class="add-row btn btn-success addRow" data-count="5"> +5 </span>
+              </div>
             </div>
-          </div>
-          <div class="row">
-              <span class="add-row btn btn-success addRow" data-count="1"> + </span>
-              <span class="add-row btn btn-success addRow" data-count="5"> +5 </span>
-          </div>
 
           </div>
-          
+
           <div class="impex-output">
 
           </div>
@@ -51,27 +60,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="assets/js/functions.js"></script>
-    
+
 
     <script id="impex-table" type="text/x-handlebars-template">
+      <tbody>
         {{#each rows}}
             <tr>
               {{#each this}}
                 <td><input type="text" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
               <td>
-                <div href="#" class="delete btn btn-block btn-danger removeRow" data-row="{{@index}}">-</div>
+                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}">-</div>
               </td>
             </tr>
         {{/each}}
-        <tr>
-          {{#each rows.[0]}}
-            <td><div href="#" class="delete btn btn-block btn-danger removeColumn" data-col="{{@index}}">-</div></td>
-          {{/each}}
-        </tr>
-
+        <tbody>
+        <tfoot>
+          <tr>
+            {{#each rows.[0]}}
+              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}">-</div></td>
+            {{/each}}
+          </tr>
+        </tfoot>
     </script>
-
 
     <script id="impex-out" type="text/x-handlebars-template">
         {{#each rows}}
@@ -82,7 +93,7 @@
             </div>
         {{/each}}
     </script>
-        
+
   </body>
 
   <footer>

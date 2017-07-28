@@ -1,12 +1,43 @@
+body {
+  font-family: Playfair Display, sans-serif;
+}
+h3.main-title {
+  margin: 20px auto;
+  text-transform: uppercase;
+  font-family: Oswald;
+}
+small {
+  display: block;
+  margin: 20px 0;
+  text-transform: capitalize;
+  @extend body;
+}
+.build-container {
+  padding-bottom: 500px;
+}
+.add-row-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.add-row-container .add-row {
+  display: block;
+  margin-left: 20px;
+}
+tfoot tr td .removeColumn {
+  max-width: 35px;
+  margin: 0 auto;
+}
 .impex-output {
-  height: 150px;
+  height: 250px;
   position: fixed;
   bottom: 50px;
+  left: 0;
   width: 100%;
+  padding: 30px 15px;
   background: #f9f9f9;
   border-top: 1px solid;
-  border-bottom: 1px solid;
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
 footer {
@@ -14,5 +45,8 @@ footer {
   bottom: 0;
   width: 100%;
   padding: 10px 15px;
-  font-size: 20px; 
+  font-size: 20px;
+  background: #0089CD;
+  color: #fff;
+  border-top: 3px solid #0089CD;
 }
