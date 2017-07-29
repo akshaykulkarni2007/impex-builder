@@ -2,7 +2,8 @@ var tableSource,
     outSource,
     tableTemplate,
     outTemplate,
-    impex_data;
+    impex_data,
+    headers_data;
 
 $(document).ready(function() {
   tableSource =  $("#impex-table").html();
@@ -10,7 +11,10 @@ $(document).ready(function() {
   tableTemplate  = Handlebars.compile(tableSource);
   outTemplate    = Handlebars.compile(outSource);
   impex_data = [['','','',''],['','','',''],['','','','']];
-  printTable(impex_data);
+  headers_data = populateHeadersData(impex_data);
+
+
+  printTable(impex_data,headers_data);
   printImpexOutput(impex_data);
 
   placeAddCol();
@@ -35,6 +39,8 @@ $(document).ready(function() {
     for(var row of impex_data){
       row.splice(col,1);
     }
+    headers_data.splice(col,1);
+    updateHeaderIndices(headers_data);
     $(document).trigger('content-refresh');
   });
 
@@ -42,6 +48,7 @@ $(document).ready(function() {
     for(var row of impex_data){
       row.push('');
     }
+    headers_data.push('Header - ' + (impex_data[0].length));
     $(document).trigger('content-refresh');
   });
 
@@ -60,18 +67,6 @@ $(document).ready(function() {
     placeAddCol();
   });
 
-  // label
-  $("label").each(function() {
-    $(this).html("Header " + ($(this).data("col") + 1));
-    $(this).focusin(function() {
-      $(this).html("");
-    });
-    $(this).focusout(function() {
-      if($(this).html() == "" || $(this).html() == ("Header " + ($(this).data("col") + 1))) {
-        $(this).html("Header " + ($(this).data("col") + 1));
-      }
-    });
-  });
 
 });
 
@@ -84,22 +79,62 @@ $(document).on('impex-updated',function(e) {
 $(document).on('content-refresh',function() {
   if(impex_data.length === 0 || impex_data[0].length ===0) {
       impex_data = [['']];
+      headers_data = ["Header - 1"];
   }
-  printTable(impex_data);
+  printTable(impex_data, headers_data);
   printImpexOutput(impex_data);
+
 });
 
 function printImpexOutput(impex_data) {
   $('.impex-output').html(outTemplate({rows:impex_data}));
 }
 
-function printTable(impex_data) {
-  var html = tableTemplate({rows: impex_data});
+function printTable(impex_data,headers_data) {
+  var html = tableTemplate({  rows: impex_data,
+                              headers: headers_data
+                            });
   $('table').html(html);
+  bindEvenets();
 }
+
 function placeAddCol() {
   $(".add-row-container").css({
     "height": $("#main-table tbody").css("height"),
     "margin-top": $("#main-table thead").css("height")
   });
+}
+
+function bindEvenets(){
+  $("label").each(function() {
+    $(this).focusin(function() {
+      var val;
+      val = $(this).html();
+      if(val==="Header - "+($(this).data("col")+1))
+        $(this).html("");
+    });
+    $(this).focusout(function() {
+      if($(this).html().trim() == "") {
+        $(this).html("Header - " + ($(this).data('col')+1));
+      }
+      headers_data[$(this).data('col')] = $(this).html();
+    });
+  });
+}
+
+function populateHeadersData(rows){
+  var row = rows[0];
+  var header_data = [];
+  for(var i = 0; i < row.length; i++){
+    header_data.push('Header - ' + (i+1));
+  }
+  return header_data;
+}
+
+function updateHeaderIndices(data){
+  for(var i = 0 ; i < data.length; i++){
+    if(data[i].indexOf("Header - ") >= 0){
+      data[i] = "Header - " + (i+1);
+    }
+  }
 }
