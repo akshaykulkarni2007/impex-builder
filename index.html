@@ -33,22 +33,25 @@
                   </table>
                 </div>
                 <div class="add-row-container">
-                  <span class="add-row btn btn-success addColumn"> + </span>
+                  <span class="add-row btn btn-success addColumn" title="Add Column"> + </span>
                 </div>
               </div>
             </div>
 
             <div class="row">
               <div class="col-xs-12">
-                <span class="add-row btn btn-success addRow" data-count="1"> + </span>
-                <span class="add-row btn btn-success addRow" data-count="5"> +5 </span>
+                <span class="add-row btn btn-success addRow" data-count="1" title="Add Row"> + </span>
+                <span class="add-row btn btn-success addRow" data-count="5" title="Add 5 Rows"> +5 </span>
               </div>
             </div>
 
           </div>
 
           <div class="impex-output">
-
+            <div class="impex-output-title">
+              <span data-toggle="collapse" data-target="#impex-output"></span>
+              <span class="btn btn-primary">Copy <span class="glyphicon glyphicon-copy"></span></span>
+            </div>
           </div>
 
         </div>
@@ -58,7 +61,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <script src="assets/js/helpers.js"></script>
     <script src="assets/js/functions.js"></script>
 
@@ -78,7 +82,7 @@
                 <td><input type="text" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
               <td>
-                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}">-</div>
+                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}" title="Remove Row">-</div>
               </td>
             </tr>
         {{/each}}
@@ -86,7 +90,7 @@
         <tfoot>
           <tr class="animated fadeIn">
             {{#each rows.[0]}}
-              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}">-</div></td>
+              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}" title="Remove Column">-</div></td>
             {{/each}}
           </tr>
         </tfoot>
@@ -105,7 +109,7 @@
   </body>
 
   <footer>
-    Created by Akshay Kulkarni for KPIT Technologies
+    Created by Akshay Kulkarni for <a href="https://www.kpit.com/">KPIT Technologies</a>
   </footer>
 
 </html>
