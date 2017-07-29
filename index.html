@@ -47,11 +47,13 @@
 
           </div>
 
+
           <div class="impex-output">
             <div class="impex-output-title">
-              <span data-toggle="collapse" data-target="#impex-output"></span>
-              <span class="btn btn-primary">Copy <span class="glyphicon glyphicon-copy"></span></span>
+              <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
+              <span class="btn btn-primary collapse-output" data-toggle="collapse" data-target="#impex-output-body">X</span>
             </div>
+            <div class="impex-output-body" id="impex-output-body"></div>
           </div>
 
         </div>
@@ -98,11 +100,7 @@
 
     <script id="impex-out" type="text/x-handlebars-template">
         {{#each rows}}
-            <div>
-              {{#each this}}
-                {{this}};
-              {{/each}}
-            </div>
+            <div>{{#each this}}{{this}};{{/each}}</div>
         {{/each}}
     </script>
 

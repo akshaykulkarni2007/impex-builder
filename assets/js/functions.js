@@ -13,6 +13,7 @@ $(document).ready(function() {
   impex_data = [['','','',''],['','','',''],['','','','']];
   headers_data = populateHeadersData(impex_data);
 
+  new Clipboard('.clipboard');
 
   printTable(impex_data,headers_data);
   printImpexOutput(impex_data);
@@ -88,7 +89,7 @@ $(document).on('content-refresh',function() {
 });
 
 function printImpexOutput(impex_data) {
-  $('.impex-output').html(outTemplate({rows:impex_data}));
+  $('.impex-output-body').html(outTemplate({rows:impex_data}));
 }
 
 function printTable(impex_data,headers_data) {
