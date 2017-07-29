@@ -15,12 +15,16 @@ small {
 .build-container {
   padding-bottom: 500px;
 }
+.table>tbody>tr>td {
+  border: none;
+}
 label {
   display: block;
   cursor: text;
   border-bottom: 1px solid #a9a9a9;
   text-align: center;
   font-weight: lighter;
+  color: #777;
 }
 label:focus {
   outline: none;
@@ -45,7 +49,7 @@ tfoot tr td .removeColumn {
   left: 0;
   width: 100%;
   padding: 30px 15px;
-  background: #f9f9f9;
+  background: #e6e6e6;
   border-top: 1px solid #a9a9a9;
   overflow-y: scroll;
 }
@@ -59,4 +63,27 @@ footer {
   background: #0089CD;
   color: #fff;
   border-top: 3px solid #0089CD;
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
 }

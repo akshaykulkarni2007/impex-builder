@@ -36,16 +36,17 @@ $(document).ready(function() {
 
   $(document).on('click','.removeColumn',function() {
     var col = $(this).data('col');
-    for(var row of impex_data){
+    for(var row of impex_data) {
       row.splice(col,1);
     }
     headers_data.splice(col,1);
     updateHeaderIndices(headers_data);
     $(document).trigger('content-refresh');
+    placeAddCol();
   });
 
   $('.addColumn').on('click',function() {
-    for(var row of impex_data){
+    for(var row of impex_data) {
       row.push('');
     }
     headers_data.push('Header - ' + (impex_data[0].length));
@@ -93,7 +94,7 @@ function printImpexOutput(impex_data) {
 function printTable(impex_data,headers_data) {
   var html = tableTemplate({  rows: impex_data,
                               headers: headers_data
-                            });
+                          });
   $('table').html(html);
   bindEvenets();
 }
@@ -105,7 +106,7 @@ function placeAddCol() {
   });
 }
 
-function bindEvenets(){
+function bindEvenets() {
   $("label").each(function() {
     $(this).focusin(function() {
       var val;
@@ -122,18 +123,18 @@ function bindEvenets(){
   });
 }
 
-function populateHeadersData(rows){
+function populateHeadersData(rows) {
   var row = rows[0];
   var header_data = [];
-  for(var i = 0; i < row.length; i++){
+  for(var i = 0; i < row.length; i++) {
     header_data.push('Header - ' + (i+1));
   }
   return header_data;
 }
 
-function updateHeaderIndices(data){
-  for(var i = 0 ; i < data.length; i++){
-    if(data[i].indexOf("Header - ") >= 0){
+function updateHeaderIndices(data) {
+  for(var i = 0 ; i < data.length; i++) {
+    if(data[i].indexOf("Header - ") >= 0) {
       data[i] = "Header - " + (i+1);
     }
   }

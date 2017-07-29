@@ -65,7 +65,7 @@
 
     <script id="impex-table" type="text/x-handlebars-template">
       <thead>
-        <tr>
+        <tr class="animated fadeIn">
           {{#each headers}}
             <td><label contenteditable="true" data-col="{{@index}}">{{{this}}}</label></td>
           {{/each}}
@@ -73,7 +73,7 @@
       </thead>
       <tbody>
         {{#each rows}}
-            <tr>
+            <tr class="animated fadeIn">
               {{#each this}}
                 <td><input type="text" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
@@ -84,7 +84,7 @@
         {{/each}}
         <tbody>
         <tfoot>
-          <tr>
+          <tr class="animated fadeIn">
             {{#each rows.[0]}}
               <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}">-</div></td>
             {{/each}}
