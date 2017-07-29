@@ -63,6 +63,13 @@
 
 
     <script id="impex-table" type="text/x-handlebars-template">
+      <thead>
+        <tr>
+          {{#each rows.[0]}}
+            <td><label contenteditable="true" data-col="{{@index}}"/></td>
+          {{/each}}
+        </tr>
+      </thead>
       <tbody>
         {{#each rows}}
             <tr>

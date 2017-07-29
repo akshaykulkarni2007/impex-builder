@@ -59,6 +59,20 @@ $(document).ready(function() {
     }
     placeAddCol();
   });
+
+  // label
+  $("label").each(function() {
+    $(this).html("Header " + ($(this).data("col") + 1));
+    $(this).focusin(function() {
+      $(this).html("");
+    });
+    $(this).focusout(function() {
+      if($(this).html() == "" || $(this).html() == ("Header " + ($(this).data("col") + 1))) {
+        $(this).html("Header " + ($(this).data("col") + 1));
+      }
+    });
+  });
+
 });
 
 
@@ -84,5 +98,8 @@ function printTable(impex_data) {
   $('table').html(html);
 }
 function placeAddCol() {
-  $(".add-row-container").css("height", $("#main-table tbody").css("height"));
+  $(".add-row-container").css({
+    "height": $("#main-table tbody").css("height"),
+    "margin-top": $("#main-table thead").css("height")
+  });
 }

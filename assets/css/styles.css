@@ -15,6 +15,16 @@ small {
 .build-container {
   padding-bottom: 500px;
 }
+label {
+  display: block;
+  cursor: text;
+  border-bottom: 1px solid #a9a9a9;
+  text-align: center;
+  font-weight: lighter;
+}
+label:focus {
+  outline: none;
+}
 .add-row-container {
   display: flex;
   align-items: center;
@@ -36,7 +46,7 @@ tfoot tr td .removeColumn {
   width: 100%;
   padding: 30px 15px;
   background: #f9f9f9;
-  border-top: 1px solid;
+  border-top: 1px solid #a9a9a9;
   overflow-y: scroll;
 }
 
