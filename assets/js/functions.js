@@ -20,7 +20,7 @@ $(document).ready(function() {
 
   placeAddCol();
 
-  $(document).on('input','input',function() {
+  $(document).on('input','input.impex-input',function() {
     var e = $.Event("impex-updated");
     e.row = $(this).data('row');
     e.col = $(this).data('col');
@@ -69,6 +69,10 @@ $(document).ready(function() {
     placeAddCol();
   });
 
+  $(".collapse-output").click(function() {
+    $(".impex-output-body").toggleClass("body-collapsed");
+    $(".impex-output").toggleClass("output-collapsed");
+  })
 
 });
 
@@ -140,3 +144,14 @@ function updateHeaderIndices(data) {
     }
   }
 }
+$('#download-button').click(function(){
+  var file_content = $("#impex-output-body").text().trim();
+  file_content = file_content.replace(/(<([^>]+)>)/ig,"");
+  console.log(file_content)
+  var file_name = $("#file-name").val() + '.impex';
+  var link = document.createElement('a');
+  var mimeType = "text/plain";
+  link.setAttribute('download', file_name);
+  link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(file_content));
+  link.click();
+});

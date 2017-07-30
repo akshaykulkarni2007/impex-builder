@@ -43,6 +43,12 @@
                 <span class="add-row btn btn-success addRow" data-count="1" title="Add Row"> + </span>
                 <span class="add-row btn btn-success addRow" data-count="5" title="Add 5 Rows"> +5 </span>
               </div>
+
+              <div class="col-xs-12 file-download-container">
+                <h4 class="file-download-title">download impex file</h4>
+                <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
+                <span id="download-button" class="btn btn-primary">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
+              </div>
             </div>
 
           </div>
@@ -51,7 +57,7 @@
           <div class="impex-output">
             <div class="impex-output-title">
               <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
-              <span class="btn btn-primary collapse-output" data-toggle="collapse" data-target="#impex-output-body">X</span>
+              <span class="btn btn-primary collapse-output" data-target="#impex-output-body">X</span>
             </div>
             <div class="impex-output-body" id="impex-output-body"></div>
           </div>
@@ -81,7 +87,7 @@
         {{#each rows}}
             <tr class="animated fadeIn">
               {{#each this}}
-                <td><input type="text" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
+                <td><input type="text" class="impex-input" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
               <td>
                 <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}" title="Remove Row">-</div>

@@ -4,7 +4,7 @@ body {
 .btn {
   border-radius: 0;
 }
-h3.main-title {
+h3.main-title, h4.file-download-title {
   margin: 20px auto;
   text-transform: uppercase;
   font-family: Oswald;
@@ -45,6 +45,14 @@ tfoot tr td .removeColumn {
   max-width: 35px;
   margin: 0 auto;
 }
+.file-download-container {
+  margin-top: 50px;
+}
+.file-download-container .file-name-input {
+  padding: 5px 12px;
+  min-width: 250px;
+  vertical-align: middle;
+}
 .impex-output {
   height: 250px;
   position: fixed;
@@ -53,7 +61,8 @@ tfoot tr td .removeColumn {
   width: 100%;
   border-top: 1px solid #a9a9a9;
   background: #e6e6e6;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  transition: height 0.2s ease-in-out;
 }
 .impex-output .impex-output-title {
   background: #a9a9a9;
@@ -64,13 +73,19 @@ tfoot tr td .removeColumn {
 .impex-output .impex-output-title span.clipboard {
   /*float: right;*/
   z-index: 10;
-
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
-  height: inherit;
+  height: 195px;
+  overflow-y: scroll;
 }
-
+.output-collapsed {
+  height: 55px;
+  overflow-y: hidden;
+}
+.body-collapsed {
+    height: 0;
+}
 footer {
   position: fixed;
   bottom: 0;
