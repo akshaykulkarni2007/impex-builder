@@ -18,6 +18,8 @@ $(document).ready(function() {
   printTable(impex_data,headers_data);
   printImpexOutput(impex_data);
 
+  $("label.table-header").css("max-width", $("#main-table tbody tr td").css("width"));
+
   placeAddCol();
 
   $(document).on('input','input.impex-input',function() {
@@ -72,6 +74,7 @@ $(document).ready(function() {
   $(".collapse-output").click(function() {
     $(".impex-output-body").toggleClass("body-collapsed");
     $(".impex-output").toggleClass("output-collapsed");
+    $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
   })
 
 });
@@ -112,7 +115,7 @@ function placeAddCol() {
 }
 
 function bindEvenets() {
-  $("label").each(function() {
+  $("label.table-header").each(function() {
     $(this).focusin(function() {
       var val;
       val = $(this).html();
@@ -145,7 +148,7 @@ function updateHeaderIndices(data) {
   }
 }
 $('#download-button').click(function(){
-  var file_content = $("#impex-output-body").text().trim();
+  var file_content = $("#impex-output-body").html().trim();
   file_content = file_content.replace(/(<([^>]+)>)/ig,"");
   console.log(file_content)
   var file_name = $("#file-name").val() + '.impex';

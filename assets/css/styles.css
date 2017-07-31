@@ -28,6 +28,12 @@ label {
   text-align: center;
   font-weight: lighter;
   color: #777;
+  padding: 5px;
+}
+label.impex-header {
+  text-align: left;
+  color: #000;
+  margin-bottom: 20px;
 }
 label:focus {
   outline: none;
@@ -67,12 +73,21 @@ tfoot tr td .removeColumn {
 .impex-output .impex-output-title {
   background: #a9a9a9;
   position: relative;
-  text-align: right;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
-.impex-output .impex-output-title span.clipboard {
+.impex-output .impex-output-title h5.impex-output-title-header {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: Oswald;
+}
+.impex-output .impex-output-title-controls {
+  text-align: right;
+}
+.impex-output .impex-output-title span.collapse-output {
   /*float: right;*/
-  z-index: 10;
+  padding: 9px;
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
@@ -96,9 +111,17 @@ footer {
   color: #fff;
   border-top: 3px solid #0089CD;
 }
-footer a, footer a:hover, footer a:active {
+footer a, footer a:hover, footer a:active, footer a:visited {
   color: #D7DF00;
   text-decoration: none;
+}
+footer a span.glyphicon {
+  font-size: 10px;
+  display: none;
+  vertical-align: super;
+}
+footer a:hover span {
+  display: inherit;
 }
 .animated {
   animation-duration: 1s;

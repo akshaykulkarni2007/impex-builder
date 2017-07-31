@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Impex Generator</title>
+    <title>Impex Builder</title>
     <link href="assets/fonts/Oswald-Regular.ttf" rel="stylesheet">
     <link href="assets/fonts/PlayfairDisplay-Regular.ttf" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,14 +20,18 @@
       <div class="row">
         <div class="col-xs-12">
 
-          <h3 class="main-title">impex builder <br><small>Tiny tool to create Hybris ImpEX files</small></h3>
+          <h3 class="main-title">impex builder <br><small>Tool to create Hybris ImpEX files</small></h3>
 
           <div class="build-container">
 
             <div class="row">
 
               <div class="col-xs-12">
+
+                <label class="impex-header" contenteditable="true"></label>
+
                 <div class="pull-left">
+
                   <table class="table table-hover table-striped table-responsive" id="main-table">
 
                   </table>
@@ -56,8 +60,11 @@
 
           <div class="impex-output">
             <div class="impex-output-title">
-              <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
-              <span class="btn btn-primary collapse-output" data-target="#impex-output-body">X</span>
+              <h5 class="impex-output-title-header">impex output</h5>
+              <div class="impex-output-title-controls">
+                <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body" title="Copy to Clipboard">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
+                <span class="btn btn-primary collapse-output" title="Hide/Show Output"><span class="glyphicon glyphicon-minus"></span></span>
+              </div>
             </div>
             <div class="impex-output-body" id="impex-output-body"></div>
           </div>
@@ -79,7 +86,7 @@
       <thead>
         <tr class="animated fadeIn">
           {{#each headers}}
-            <td><label contenteditable="true" data-col="{{@index}}">{{{this}}}</label></td>
+            <td><label class="table-header" contenteditable="true" data-col="{{@index}}">{{{this}}}</label></td>
           {{/each}}
         </tr>
       </thead>
@@ -105,15 +112,14 @@
     </script>
 
     <script id="impex-out" type="text/x-handlebars-template">
-        {{#each rows}}
-            <div>{{#each this}}{{this}};{{/each}}</div>
+        {{#each rows}}<div>{{#each this}}{{this}};{{/each}}</div>
         {{/each}}
     </script>
 
   </body>
 
   <footer>
-    Created by Akshay Kulkarni for <a href="https://www.kpit.com/">KPIT Technologies</a>
+    Created by Akshay Kulkarni for <a href="https://www.kpit.com/" target="_blank">KPIT Technologies <span class="glyphicon glyphicon-new-window"></span></a>
   </footer>
 
 </html>
