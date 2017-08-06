@@ -77,6 +77,18 @@ $(document).ready(function() {
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
   })
 
+  $(".impex-header").focus(function() {
+    setInterval(function () {
+      $(".impex-output-header").text($(".impex-header").text());
+    },300);
+  });
+
+  // $("#impex-output").resizable({
+  //   handles:'n',
+  //   ghost: true,
+  //   maxHeight: 500,
+  //   minHeight: 250
+  // });
 });
 
 
@@ -96,7 +108,7 @@ $(document).on('content-refresh',function() {
 });
 
 function printImpexOutput(impex_data) {
-  $('.impex-output-body').html(outTemplate({rows:impex_data}));
+  $('#impex-output-body').html(outTemplate({rows:impex_data}));
 }
 
 function printTable(impex_data,headers_data) {
@@ -147,14 +159,17 @@ function updateHeaderIndices(data) {
     }
   }
 }
-$('#download-button').click(function(){
-  var file_content = $("#impex-output-body").html().trim();
-  file_content = file_content.replace(/(<([^>]+)>)/ig,"");
-  console.log(file_content)
-  var file_name = $("#file-name").val() + '.impex';
-  var link = document.createElement('a');
-  var mimeType = "text/plain";
-  link.setAttribute('download', file_name);
-  link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(file_content));
-  link.click();
+$('#download-button').click(function() {
+  if($("#file-name").val()) {
+    var file_content = $(".impex-output-body").html().trim();
+    file_content = file_content.replace(/(<([^>]+)>)/ig,"");
+    var file_name = $("#file-name").val() + '.impex';
+    var link = document.createElement('a');
+    var mimeType = "text/plain";
+    link.setAttribute('download', file_name);
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(file_content));
+    link.click();
+  } else {
+    alert("Please Enter File Name");
+  }
 });

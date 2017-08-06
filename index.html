@@ -8,6 +8,7 @@
     <link href="assets/fonts/Oswald-Regular.ttf" rel="stylesheet">
     <link href="assets/fonts/PlayfairDisplay-Regular.ttf" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -58,7 +59,7 @@
           </div>
 
 
-          <div class="impex-output">
+          <div class="impex-output" id="impex-output">
             <div class="impex-output-title">
               <h5 class="impex-output-title-header">impex output</h5>
               <div class="impex-output-title-controls">
@@ -66,7 +67,10 @@
                 <span class="btn btn-primary collapse-output" title="Hide/Show Output"><span class="glyphicon glyphicon-minus"></span></span>
               </div>
             </div>
-            <div class="impex-output-body" id="impex-output-body"></div>
+            <div class="impex-output-body">
+              <div class="impex-output-header"></div>
+              <div id="impex-output-body"></div>
+            </div>
           </div>
 
         </div>
@@ -75,6 +79,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
@@ -112,7 +117,7 @@
     </script>
 
     <script id="impex-out" type="text/x-handlebars-template">
-        {{#each rows}}<div>{{#each this}}{{this}};{{/each}}</div>
+        {{#each rows}}<div>{{#each this}};{{this}}{{/each}}</div>
         {{/each}}
     </script>
 

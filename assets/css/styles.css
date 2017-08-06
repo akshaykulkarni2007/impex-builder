@@ -86,8 +86,10 @@ tfoot tr td .removeColumn {
   text-align: right;
 }
 .impex-output .impex-output-title span.collapse-output {
-  /*float: right;*/
   padding: 9px;
+}
+.impex-output .impex-output-header {
+  min-height: 50px;
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
