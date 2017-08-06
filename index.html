@@ -30,6 +30,17 @@
               <div class="col-xs-12">
 
                 <label class="impex-header" contenteditable="true"></label>
+                <div class="row">
+                  <div class="checkbox col-md-4">
+                    <label><input name="operation" type="radio" value="INSERT_UPDATE" checked>INSER_UPDATE</label>
+                  </div>
+                  <div class="checkbox col-md-4" >
+                    <label><input name="operation" type="radio" value="INSERT">INSERT</label>
+                  </div>
+                  <div class="checkbox col-md-4">
+                    <label><input name="operation" type="radio" value="DELETE">DELETE</label>
+                  </div>
+                </div>
 
                 <div class="pull-left">
 
@@ -67,10 +78,7 @@
                 <span class="btn btn-primary collapse-output" title="Hide/Show Output"><span class="glyphicon glyphicon-minus"></span></span>
               </div>
             </div>
-            <div class="impex-output-body">
-              <div class="impex-output-header"></div>
-              <div id="impex-output-body"></div>
-            </div>
+            <div class="impex-output-body" id="impex-output-body"></div>
           </div>
 
         </div>
@@ -117,8 +125,9 @@
     </script>
 
     <script id="impex-out" type="text/x-handlebars-template">
-        {{#each rows}}<div>{{#each this}};{{this}}{{/each}}</div>
-        {{/each}}
+        <div class="impex-output-header">{{operation}} {{#each headers}}{{{this}}};{{/each}}</div>
+{{#each rows}}<div>{{#each this}};{{this}}{{/each}}</div>
+{{/each}}
     </script>
 
   </body>

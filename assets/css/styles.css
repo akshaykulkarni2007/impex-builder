@@ -21,7 +21,7 @@ small {
 .table>tbody>tr>td {
   border: none;
 }
-label {
+label.impex-header, label.table-header {
   display: block;
   cursor: text;
   border-bottom: 1px solid #a9a9a9;

@@ -3,7 +3,8 @@ var tableSource,
     tableTemplate,
     outTemplate,
     impex_data,
-    headers_data;
+    headers_data,
+    operation;
 
 $(document).ready(function() {
   tableSource =  $("#impex-table").html();
@@ -12,16 +13,19 @@ $(document).ready(function() {
   outTemplate    = Handlebars.compile(outSource);
   impex_data = [['','','',''],['','','',''],['','','','']];
   headers_data = populateHeadersData(impex_data);
-
+  operation = $('[name="operation"]').val();
   new Clipboard('.clipboard');
 
   printTable(impex_data,headers_data);
-  printImpexOutput(impex_data);
+  printImpexOutput(impex_data,headers_data);
 
   $("label.table-header").css("max-width", $("#main-table tbody tr td").css("width"));
 
   placeAddCol();
-
+  $('[name="operation"]').on('change',function(){
+    operation = $(this).val();
+    printImpexOutput(impex_data,headers_data);
+  });
   $(document).on('input','input.impex-input',function() {
     var e = $.Event("impex-updated");
     e.row = $(this).data('row');
@@ -77,11 +81,11 @@ $(document).ready(function() {
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
   })
 
-  $(".impex-header").focus(function() {
+/*  $(".impex-header").focus(function() {
     setInterval(function () {
       $(".impex-output-header").text($(".impex-header").text());
     },300);
-  });
+  });*/
 
   // $("#impex-output").resizable({
   //   handles:'n',
@@ -93,8 +97,10 @@ $(document).ready(function() {
 
 
 $(document).on('impex-updated',function(e) {
+  if(!e.header_data_updated){
     impex_data[e.row][e.col] = e.val;
-    printImpexOutput(impex_data);
+  }
+    printImpexOutput(impex_data,headers_data);
 });
 
 $(document).on('content-refresh',function() {
@@ -103,12 +109,14 @@ $(document).on('content-refresh',function() {
       headers_data = ["Header - 1"];
   }
   printTable(impex_data, headers_data);
-  printImpexOutput(impex_data);
+  printImpexOutput(impex_data,headers_data);
 
 });
 
-function printImpexOutput(impex_data) {
-  $('#impex-output-body').html(outTemplate({rows:impex_data}));
+function printImpexOutput(impex_data,headers_data) {
+  $('#impex-output-body').html(outTemplate({rows:impex_data,
+                                            headers:headers_data,
+                                            operation: operation}));
 }
 
 function printTable(impex_data,headers_data) {
@@ -141,6 +149,15 @@ function bindEvenets() {
       headers_data[$(this).data('col')] = $(this).html();
     });
   });
+
+  $('.table-header').each(function() {
+    $(this).on('keyup',function() {
+      headers_data[$(this).data('col')] = $(this).html();
+      var e = $.Event("impex-updated");
+      e.header_data_updated = true;
+      $(document).trigger(e);
+    });
+  })
 }
 
 function populateHeadersData(rows) {
@@ -162,6 +179,7 @@ function updateHeaderIndices(data) {
 $('#download-button').click(function() {
   if($("#file-name").val()) {
     var file_content = $(".impex-output-body").html().trim();
+    var operation = $('.operation')
     file_content = file_content.replace(/(<([^>]+)>)/ig,"");
     var file_name = $("#file-name").val() + '.impex';
     var link = document.createElement('a');
