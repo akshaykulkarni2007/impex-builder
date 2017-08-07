@@ -5,9 +5,16 @@ body {
   border-radius: 0;
 }
 h3.main-title, h4.file-download-title {
-  margin: 20px auto;
+  margin: 20px;
+  margin-left: auto;
   text-transform: uppercase;
   font-family: Oswald;
+}
+.info-button {
+  border-radius: 50%;
+  text-transform: lowercase;
+  font-size: 10px;
+  vertical-align: text-bottom;
 }
 small {
   display: block;
@@ -32,11 +39,18 @@ label.impex-header, label.table-header {
 }
 label.impex-header {
   text-align: left;
-  color: #000;
+  font-weight: lighter;
+  color: #777;
   margin-bottom: 20px;
 }
 label:focus {
   outline: none;
+}
+.header_form .radio {
+  margin-right: 20px;
+}
+.header_form .radio input[type=radio] {
+  margin-right: 5px;
 }
 .add-row-container {
   display: flex;
@@ -89,7 +103,7 @@ tfoot tr td .removeColumn {
   padding: 9px;
 }
 .impex-output .impex-output-header {
-  min-height: 50px;
+  min-height: 40px;
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;

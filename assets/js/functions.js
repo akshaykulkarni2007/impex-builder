@@ -81,18 +81,6 @@ $(document).ready(function() {
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
   })
 
-/*  $(".impex-header").focus(function() {
-    setInterval(function () {
-      $(".impex-output-header").text($(".impex-header").text());
-    },300);
-  });*/
-
-  // $("#impex-output").resizable({
-  //   handles:'n',
-  //   ghost: true,
-  //   maxHeight: 500,
-  //   minHeight: 250
-  // });
 });
 
 
@@ -150,14 +138,24 @@ function bindEvenets() {
     });
   });
 
-  $('.table-header').each(function() {
+  $('label.table-header').each(function() {
     $(this).on('keyup',function() {
       headers_data[$(this).data('col')] = $(this).html();
       var e = $.Event("impex-updated");
       e.header_data_updated = true;
       $(document).trigger(e);
     });
-  })
+  });
+
+  $(".impex-header").focusin(function() {
+    if($(this).html() === "Reference Header")
+      $(this).html("");
+    $(this).focusout(function() {
+      if($(this).html().trim() == "") {
+        $(this).html("Reference Header");
+      }
+    });
+  });
 }
 
 function populateHeadersData(rows) {
