@@ -1,3 +1,7 @@
+::selection {
+  color: #fff;
+  background: #a9a9a9;
+}
 body {
   font-family: Playfair Display, sans-serif;
 }
@@ -13,8 +17,11 @@ h3.main-title, h4.file-download-title {
 .info-button {
   border-radius: 50%;
   text-transform: lowercase;
-  font-size: 10px;
+  font-size: 15px;
   vertical-align: text-bottom;
+  display: inline-block;
+  float: right;
+  padding: 7px 15px;
 }
 small {
   display: block;
@@ -107,7 +114,6 @@ tfoot tr td .removeColumn {
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
-  height: 195px;
   overflow-y: scroll;
 }
 .output-collapsed {
@@ -138,6 +144,14 @@ footer a span.glyphicon {
 }
 footer a:hover span {
   display: inherit;
+}
+li.help-modal-list-item {
+  margin-bottom: 10px;
+}
+li.help-modal-type-list-item,
+li.help-modal-table-list-item,
+li.help-modal-buttons-list {
+  margin: 5px auto;
 }
 .animated {
   animation-duration: 1s;

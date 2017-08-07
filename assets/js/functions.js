@@ -81,6 +81,13 @@ $(document).ready(function() {
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
   })
 
+  $(".modal-content").slimScroll ({
+    height: "90vh"
+  });
+  $("#impex-output-body").slimScroll ({
+    height: "195px"
+  });
+
 });
 
 
