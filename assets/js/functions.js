@@ -18,6 +18,7 @@ $(document).ready(function() {
 
   printTable(impex_data,headers_data);
   printImpexOutput(impex_data,headers_data);
+  removeLastSemiColon();
 
   $("label.table-header").css("max-width", $("#main-table tbody tr td").css("width"));
 
@@ -58,6 +59,7 @@ $(document).ready(function() {
     }
     headers_data.push('Header - ' + (impex_data[0].length));
     $(document).trigger('content-refresh');
+    removeLastSemiColon();
   });
 
   $('.addRow').on('click',function() {
@@ -180,6 +182,11 @@ function updateHeaderIndices(data) {
       data[i] = "Header - " + (i+1);
     }
   }
+}
+function removeLastSemiColon() {
+  var content = $(".impex-output-header").text();
+  var new_content = content.slice(0, -1);
+  $(".impex-output-header").text(new_content);
 }
 $('#download-button').click(function() {
   if($("#file-name").val()) {
