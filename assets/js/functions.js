@@ -13,8 +13,18 @@ $(document).ready(function() {
   outTemplate    = Handlebars.compile(outSource);
   impex_data = [['','','',''],['','','',''],['','','','']];
   headers_data = populateHeadersData(impex_data);
-  operation = $('[name="operation"]').val();
+  operation = $('[name="operation"]').val() + " " + $("#structure-name").val() + ";";
   new Clipboard('.clipboard');
+
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('[data-toggle="popover"]').popover ({
+    trigger: "hover",
+    title: $("#popoverTitle").html(),
+    content: $("#popoverContent").html(),
+    container: $('[data-toggle="popover"]'),
+    html: true
+  });
 
   printTable(impex_data,headers_data);
   printImpexOutput(impex_data,headers_data);
@@ -24,7 +34,11 @@ $(document).ready(function() {
 
   placeAddCol();
   $('[name="operation"]').on('change',function(){
-    operation = $(this).val();
+    operation = $(this).val() + " " + $("#structure-name").val() + ";";
+    printImpexOutput(impex_data,headers_data);
+  });
+  $("#structure-name").on('input',function(){
+    operation = $('[name="operation"]').val() + " " + $(this).val() + ";";
     printImpexOutput(impex_data,headers_data);
   });
   $(document).on('input','input.impex-input',function() {
@@ -92,7 +106,6 @@ $(document).ready(function() {
 
 });
 
-
 $(document).on('impex-updated',function(e) {
   if(!e.header_data_updated){
     impex_data[e.row][e.col] = e.val;
@@ -126,8 +139,7 @@ function printTable(impex_data,headers_data) {
 
 function placeAddCol() {
   $(".add-row-container").css({
-    "height": $("#main-table tbody").css("height"),
-    "margin-top": $("#main-table thead").css("height")
+    "height": $("#main-table").css("height")
   });
 }
 
@@ -191,7 +203,6 @@ function removeLastSemiColon() {
 $('#download-button').click(function() {
   if($("#file-name").val()) {
     var file_content = $(".impex-output-body").html().trim();
-    var operation = $('.operation')
     file_content = file_content.replace(/(<([^>]+)>)/ig,"");
     var file_name = $("#file-name").val() + '.impex';
     var link = document.createElement('a');
