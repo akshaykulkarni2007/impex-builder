@@ -204,6 +204,7 @@ $('#download-button').click(function() {
   if($("#file-name").val()) {
     var file_content = $(".impex-output-body").html().trim();
     file_content = file_content.replace(/(<([^>]+)>)/ig,"");
+    file_content = file_content.replace("&amp;", "&");
     var file_name = $("#file-name").val() + '.impex';
     var link = document.createElement('a');
     var mimeType = "text/plain";
