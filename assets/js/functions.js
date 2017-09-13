@@ -16,7 +16,9 @@ $(document).ready(function() {
   operation = $('[name="operation"]').val() + " " + $("#structure-name").val() + ";";
   new Clipboard('.clipboard');
 
-  $('[data-toggle="tooltip"]').tooltip();
+  $("body").tooltip ({
+    selector: '[data-toggle="tooltip"]'
+  });
 
   $('[data-toggle="popover"]').popover ({
     trigger: "hover",
@@ -27,6 +29,7 @@ $(document).ready(function() {
   });
 
   printTable(impex_data,headers_data);
+  labelWidth();
   printImpexOutput(impex_data,headers_data);
   removeLastSemiColon();
 
@@ -119,8 +122,8 @@ $(document).on('content-refresh',function() {
       headers_data = ["Header - 1"];
   }
   printTable(impex_data, headers_data);
+  labelWidth();
   printImpexOutput(impex_data,headers_data);
-
 });
 
 function printImpexOutput(impex_data,headers_data) {
@@ -195,6 +198,15 @@ function updateHeaderIndices(data) {
     }
   }
 }
+
+function labelWidth() {
+  var width = $("#main-table label.table-header:last").outerWidth();
+  $("#main-table thead td:first label.table-header").css({
+    "float": "right",
+    "width": width
+  })
+}
+
 function removeLastSemiColon() {
   var content = $(".impex-output-header").text();
   var new_content = content.slice(0, -1);

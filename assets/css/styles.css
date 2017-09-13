@@ -78,6 +78,17 @@ tfoot tr td .removeColumn {
   max-width: 35px;
   margin: 0 auto;
 }
+#main-table tbody tr {
+  counter-increment: rowNumber;
+}
+#main-table tbody tr td:first-child::before {
+  content: counter(rowNumber);
+  display: inline-block;
+  min-width: 30px;
+  padding: 0 .5em;
+  margin-right: 10px;
+  color: #333;
+}
 .file-download-container {
   margin-top: 50px;
 }
@@ -117,10 +128,23 @@ tfoot tr td .removeColumn {
 }
 .impex-output .impex-output-header {
   min-height: 40px;
+  padding-left: 40px;
+  margin-bottom: 10px;
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
   overflow-y: scroll;
+  counter-reset: line;
+}
+#impex-output-body div:not(.impex-output-header):before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  min-width: 30px;
+  border-right: 1px solid #a9a9a9;
+  padding: 0 .5em;
+  margin-right: 10px;
+  color: #333;
 }
 .output-collapsed {
   height: 55px;
@@ -164,6 +188,9 @@ footer .footer-right {
 }
 .popover-content a {
   color: #000 !important;
+}
+.modal-content {
+  border-radius: 0;
 }
 li.help-modal-list-item {
   margin-bottom: 10px;
