@@ -94,7 +94,7 @@ $(document).ready(function() {
     placeAddCol();
   });
 
-  $(".collapse-output").click(function() {
+  $(".collapse-output").on("click", function(e) {
     $(".impex-output-body").toggleClass("body-collapsed");
     $(".impex-output").toggleClass("output-collapsed");
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
@@ -200,11 +200,26 @@ function updateHeaderIndices(data) {
 }
 
 function labelWidth() {
-  var width = $("#main-table label.table-header:last").outerWidth();
+  $("#main-table tbody tr").each(function() {
+    $(this).find("td:first").addClass("row-number")
+  });
+  var labelWidth = $("#main-table label.table-header:last").outerWidth();
+  var pseudoWidth = parseInt(window.getComputedStyle(document.querySelector(".row-number"), ':before').width);
+  var firstColWidth = $("#main-table tbody tr:first td:first").outerWidth() + pseudoWidth + 10;
+  console.log(firstColWidth)
+
   $("#main-table thead td:first label.table-header").css({
     "float": "right",
-    "width": width
-  })
+    "width": labelWidth
+  });
+  if($("#main-table").width() >= ($(window).width() -30 )) {
+    $("#main-table tbody tr").each(function() {
+      $(this).find("td:first").css({
+        "min-width": firstColWidth
+      });
+    });
+  }
+
 }
 
 function removeLastSemiColon() {

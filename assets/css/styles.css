@@ -119,6 +119,8 @@ tfoot tr td .removeColumn {
   color: #fff;
   text-transform: uppercase;
   font-family: Oswald;
+  font-size: 18px;
+  margin-left: -5px;
 }
 .impex-output .impex-output-title-controls {
   text-align: right;
