@@ -14,7 +14,15 @@ $(document).ready(function() {
   impex_data = [['','','',''],['','','',''],['','','','']];
   headers_data = populateHeadersData(impex_data);
   operation = $('[name="operation"]').val() + " " + $("#structure-name").val() + ";";
+
   new Clipboard('.clipboard');
+
+  $(".modal-content").slimScroll ({
+    height: "90vh"
+  });
+  $("#impex-output-body").slimScroll ({
+    height: "195px"
+  });
 
   $("body").tooltip ({
     selector: '[data-toggle="tooltip"]'
@@ -29,20 +37,21 @@ $(document).ready(function() {
   });
 
   printTable(impex_data,headers_data);
-  labelWidth();
+  firstColumnWidth();
   printImpexOutput(impex_data,headers_data);
   removeLastSemiColon();
 
   $("label.table-header").css("max-width", $("#main-table tbody tr td").css("width"));
 
   placeAddCol();
+
   $('[name="operation"]').on('change',function(){
     operation = $(this).val() + " " + $("#structure-name").val() + ";";
-    printImpexOutput(impex_data,headers_data);
+    printImpexOutput(impex_data, headers_data);
   });
   $("#structure-name").on('input',function(){
-    operation = $('[name="operation"]').val() + " " + $(this).val() + ";";
-    printImpexOutput(impex_data,headers_data);
+    operation = $('[name="operation"]:checked').val() + " " + $(this).val() + ";";
+    printImpexOutput(impex_data, headers_data);
   });
   $(document).on('input','input.impex-input',function() {
     var e = $.Event("impex-updated");
@@ -98,13 +107,6 @@ $(document).ready(function() {
     $(".impex-output-body").toggleClass("body-collapsed");
     $(".impex-output").toggleClass("output-collapsed");
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
-  })
-
-  $(".modal-content").slimScroll ({
-    height: "90vh"
-  });
-  $("#impex-output-body").slimScroll ({
-    height: "195px"
   });
 
 });
@@ -122,7 +124,7 @@ $(document).on('content-refresh',function() {
       headers_data = ["Header - 1"];
   }
   printTable(impex_data, headers_data);
-  labelWidth();
+  firstColumnWidth();
   printImpexOutput(impex_data,headers_data);
 });
 
@@ -199,14 +201,13 @@ function updateHeaderIndices(data) {
   }
 }
 
-function labelWidth() {
+function firstColumnWidth() {
   $("#main-table tbody tr").each(function() {
     $(this).find("td:first").addClass("row-number")
   });
   var labelWidth = $("#main-table label.table-header:last").outerWidth();
   var pseudoWidth = parseInt(window.getComputedStyle(document.querySelector(".row-number"), ':before').width);
   var firstColWidth = $("#main-table tbody tr:first td:first").outerWidth() + pseudoWidth + 10;
-  console.log(firstColWidth)
 
   $("#main-table thead td:first label.table-header").css({
     "float": "right",
