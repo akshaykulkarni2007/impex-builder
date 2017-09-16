@@ -33,7 +33,7 @@ small {
   @extend body;
 }
 .build-container {
-  padding-bottom: 500px;
+  padding-bottom: 400px;
 }
 .table>tbody>tr>td {
   border: none;
@@ -56,6 +56,9 @@ label.impex-header {
 label:focus {
   outline: none;
 }
+.header_form {
+  display: inline-block;
+}
 .header_form .radio {
   margin-right: 20px;
 }
@@ -65,18 +68,13 @@ label:focus {
 .header_form input {
   border-radius: 0;
 }
-.add-row-container {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
+.addColumn {
+  display: inline-block;
+  float: right;
 }
-.add-row-container .add-row {
-  display: block;
-  margin-left: 20px;
-}
-tfoot tr td .removeColumn {
-  max-width: 35px;
-  margin: 0 auto;
+.main-table-container {
+  max-width: 100%;
+  overflow-x: scroll;
 }
 #main-table tbody tr {
   counter-increment: rowNumber;
@@ -89,8 +87,15 @@ tfoot tr td .removeColumn {
   margin-right: 10px;
   color: #333;
 }
+tfoot tr td .removeColumn {
+  /*max-width: 35px;*/
+  margin: 0 auto;
+}
+.addRow-container {
+  margin-top: 20px;
+}
 .file-download-container {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .file-download-container .file-name-input {
   padding: 5px 12px;

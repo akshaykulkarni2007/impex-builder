@@ -27,7 +27,6 @@
           <div class="build-container">
 
             <div class="row">
-
               <div class="col-xs-12">
 
                 <label class="impex-header" contenteditable="true">Reference Header</label>
@@ -37,7 +36,7 @@
                     <label><input name="operation" type="radio" value="INSERT" checked>INSERT</label>
                   </div>
                   <div class="radio">
-                    <label><input name="operation" type="radio" value="INSERT_UPDATE">INSER_UPDATE</label>
+                    <label><input name="operation" type="radio" value="INSERT_UPDATE">INSERT_UPDATE</label>
                   </div>
                   <div class="radio">
                     <label><input name="operation" type="radio" value="REMOVE">REMOVE</label>
@@ -47,30 +46,40 @@
                   </div>
                 </form>
 
-                <div class="pull-left">
-                  <table class="table table-hover table-striped" id="main-table"></table>
+                <span class="add-row btn btn-success addColumn" title="Add Column" data-toggle="tooltip" data-placement="bottom">Add Column</span>
+
+                <div class="clearfix"></div>
+
+                <div class="main-table-container">
+                  <div class="pull-left">
+                    <table class="table table-hover table-striped" id="main-table"></table>
+                  </div>
                 </div>
-                <div class="add-row-container">
-                  <span class="add-row btn btn-success addColumn" title="Add Column" data-toggle="tooltip" data-placement="left"> + </span>
-                </div>
+
               </div>
             </div>
 
             <div class="row">
               <div class="col-xs-12">
-                <span class="add-row btn btn-success addRow" data-count="1" title="Add Row" data-toggle="tooltip" data-placement="bottom"> + </span>
-                <span class="add-row btn btn-success addRow" data-count="5" title="Add 5 Rows" data-toggle="tooltip" data-placement="bottom"> +5 </span>
+
+                <div class="addRow-container">
+                  <span class="add-row btn btn-success addRow" data-count="1" title="Add Row" data-toggle="tooltip" data-placement="bottom"> Add Row </span>
+                  <span class="add-row btn btn-success addRow" data-count="5" title="Add 5 Rows" data-toggle="tooltip" data-placement="bottom"> Add 5 Rows </span>
+                </div>
+
               </div>
 
-              <div class="col-xs-12 file-download-container">
-                <h4 class="file-download-title">download impex file</h4>
-                <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
-                <span id="download-button" class="btn btn-primary" title="Download File" data-toggle="tooltip" data-placement="bottom">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
+              <div class="col-xs-12">
+                <div class="file-download-container">
+                  <h4 class="file-download-title">download impex file</h4>
+                  <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
+                  <span id="download-button" class="btn btn-primary" title="Download File" data-toggle="tooltip" data-placement="bottom">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
+                </div>
+
               </div>
             </div>
 
           </div>
-
 
           <div class="impex-output output-collapsed" id="impex-output">
             <div class="impex-output-title">
@@ -160,7 +169,7 @@
                 <td><input type="text" class="impex-input" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
               <td>
-                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}" title="Remove Row" data-toggle="tooltip" data-placement="right">-</div>
+                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}" title="Remove Row" data-toggle="tooltip" data-placement="left">Remove Row</div>
               </td>
             </tr>
         {{/each}}
@@ -168,7 +177,7 @@
         <tfoot>
           <tr class="animated fadeIn">
             {{#each rows.[0]}}
-              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}" title="Remove Column" data-toggle="tooltip" data-placement="bottom">-</div></td>
+              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}" title="Remove Column" data-toggle="tooltip" data-placement="bottom">Remove Column</div></td>
             {{/each}}
           </tr>
         </tfoot>

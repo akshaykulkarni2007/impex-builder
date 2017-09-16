@@ -43,13 +43,11 @@ $(document).ready(function() {
 
   $("label.table-header").css("max-width", $("#main-table tbody tr td").css("width"));
 
-  placeAddCol();
-
-  $('[name="operation"]').on('change',function(){
+  $('[name="operation"]').on('change',function() {
     operation = $(this).val() + " " + $("#structure-name").val() + ";";
     printImpexOutput(impex_data, headers_data);
   });
-  $("#structure-name").on('input',function(){
+  $("#structure-name").on('input',function() {
     operation = $('[name="operation"]:checked').val() + " " + $(this).val() + ";";
     printImpexOutput(impex_data, headers_data);
   });
@@ -65,7 +63,6 @@ $(document).ready(function() {
     var row = $(this).data('row');
     impex_data.splice(row,1);
     $(document).trigger('content-refresh');
-    placeAddCol();
   });
 
   $(document).on('click','.removeColumn',function() {
@@ -76,13 +73,13 @@ $(document).ready(function() {
     headers_data.splice(col,1);
     updateHeaderIndices(headers_data);
     $(document).trigger('content-refresh');
-    placeAddCol();
   });
 
   $('.addColumn').on('click',function() {
     for(var row of impex_data) {
       row.push('');
     }
+    // $('.main-table-container').scrollLeft($(".main-table-container").width());
     headers_data.push('Header - ' + (impex_data[0].length));
     $(document).trigger('content-refresh');
     removeLastSemiColon();
@@ -100,13 +97,28 @@ $(document).ready(function() {
       }
       $(document).trigger('content-refresh');
     }
-    placeAddCol();
   });
 
   $(".collapse-output").on("click", function(e) {
     $(".impex-output-body").toggleClass("body-collapsed");
     $(".impex-output").toggleClass("output-collapsed");
     $(".collapse-output .glyphicon").toggleClass("glyphicon-minus glyphicon-unchecked");
+  });
+
+  $('#download-button').click(function() {
+    if($("#file-name").val()) {
+      var file_content = $(".impex-output-body").html().trim();
+      file_content = file_content.replace(/(<([^>]+)>)/ig,"");
+      file_content = file_content.replace("&amp;", "&");
+      var file_name = $("#file-name").val() + '.impex';
+      var link = document.createElement('a');
+      var mimeType = "text/plain";
+      link.setAttribute('download', file_name);
+      link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(file_content));
+      link.click();
+    } else {
+      alert("Please Enter File Name");
+    }
   });
 
 });
@@ -140,12 +152,6 @@ function printTable(impex_data,headers_data) {
                           });
   $('table').html(html);
   bindEvenets();
-}
-
-function placeAddCol() {
-  $(".add-row-container").css({
-    "height": $("#main-table").css("height")
-  });
 }
 
 function bindEvenets() {
@@ -209,7 +215,7 @@ function firstColumnWidth() {
   var pseudoWidth = parseInt(window.getComputedStyle(document.querySelector(".row-number"), ':before').width);
   var firstColWidth = $("#main-table tbody tr:first td:first").outerWidth() + pseudoWidth + 10;
 
-  $("#main-table thead td:first label.table-header").css({
+  $("#main-table thead td:first label.table-header, #main-table tfoot td:first .removeColumn").css({
     "float": "right",
     "width": labelWidth
   });
@@ -220,7 +226,6 @@ function firstColumnWidth() {
       });
     });
   }
-
 }
 
 function removeLastSemiColon() {
@@ -228,18 +233,3 @@ function removeLastSemiColon() {
   var new_content = content.slice(0, -1);
   $(".impex-output-header").text(new_content);
 }
-$('#download-button').click(function() {
-  if($("#file-name").val()) {
-    var file_content = $(".impex-output-body").html().trim();
-    file_content = file_content.replace(/(<([^>]+)>)/ig,"");
-    file_content = file_content.replace("&amp;", "&");
-    var file_name = $("#file-name").val() + '.impex';
-    var link = document.createElement('a');
-    var mimeType = "text/plain";
-    link.setAttribute('download', file_name);
-    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(file_content));
-    link.click();
-  } else {
-    alert("Please Enter File Name");
-  }
-});
