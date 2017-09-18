@@ -15,10 +15,14 @@ Handlebars.registerHelper('iff', function(a, operator, b, opts) {
        default:
            throw "Unknown operator " + operator;
     }
- 
+
     if (bool) {
         return opts.fn(this);
     } else {
         return opts.inverse(this);
     }
+});
+
+Handlebars.registerHelper("inc", function(value, options) {
+  return parseInt(value) + 1;
 });

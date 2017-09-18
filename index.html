@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Impex Builder</title>
+    <link rel="icon" href="assets/images/favicon.png">
     <link href="assets/fonts/Oswald-Regular.ttf" rel="stylesheet">
     <link href="assets/fonts/PlayfairDisplay-Regular.ttf" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -20,62 +22,78 @@
       <div class="row">
         <div class="col-xs-12">
 
-          <h3 class="main-title">impex builder <a href="#" class="btn btn-default info-button" data-toggle="modal" data-target="#infoModal" title="Help"><i> i </i></a> <br><small>Tool to create Hybris ImpEX files</small></h3>
+          <h3 class="main-title">impex builder <span class="info-button" title="Help" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#infoModal"><i> i </i></a></span> <br><small>Tool to create Hybris ImpEX files</small></h3>
 
           <div class="build-container">
 
             <div class="row">
-
               <div class="col-xs-12">
 
-                <label class="impex-header" contenteditable="true">Reference Header</label>
-
-                <form class="form-inline header_form">
-                  <div class="radio" >
-                    <label><input name="operation" type="radio" value="INSERT" checked>INSERT</label>
-                  </div>
-                  <div class="radio">
-                    <label><input name="operation" type="radio" value="INSERT_UPDATE">INSER_UPDATE</label>
-                  </div>
-                  <div class="radio">
-                    <label><input name="operation" type="radio" value="REMOVE">REMOVE</label>
-                  </div>
-                </form>
-
-                <div class="pull-left">
-                  <table class="table table-hover table-striped table-responsive" id="main-table"></table>
+                <h4 class="accordion-trigger">1. Macro and Reference Header</h4>
+                <div class="accordion-content">
+                  <label class="impex-header" contenteditable="true">Reference Header</label>
                 </div>
-                <div class="add-row-container">
-                  <span class="add-row btn btn-success addColumn" title="Add Column"> + </span>
+
+                <h4 class="accordion-trigger">2. ImpEx Builder Table</h4>
+                <div class="accordion-content active">
+
+                  <form class="form-inline header_form">
+                    <div class="radio" >
+                      <label><input name="operation" type="radio" value="INSERT" checked>INSERT</label>
+                    </div>
+                    <div class="radio">
+                      <label><input name="operation" type="radio" value="INSERT_UPDATE">INSERT_UPDATE</label>
+                    </div>
+                    <div class="radio">
+                      <label><input name="operation" type="radio" value="REMOVE">REMOVE</label>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="structure-name" placeholder="structure">
+                    </div>
+                  </form>
+
+                  <span class="add-row btn btn-success addColumn" title="Add Column" data-toggle="tooltip" data-placement="bottom">Add Column</span>
+
+                  <div class="clearfix"></div>
+
+                  <div class="main-table-container">
+                    <div class="pull-left">
+                      <table class="table table-hover table-striped" id="main-table"></table>
+                    </div>
+                  </div>
+
+                    <div class="addRow-container">
+                      <span class="add-row btn btn-success addRow" data-count="1" title="Add Row" data-toggle="tooltip" data-placement="bottom"> Add Row </span>
+                      <span class="add-row btn btn-success addRow" data-count="5" title="Add 5 Rows" data-toggle="tooltip" data-placement="bottom"> Add 5 Rows </span>
+                    </div>
+
                 </div>
+
               </div>
             </div>
 
             <div class="row">
-              <div class="col-xs-12">
-                <span class="add-row btn btn-success addRow" data-count="1" title="Add Row"> + </span>
-                <span class="add-row btn btn-success addRow" data-count="5" title="Add 5 Rows"> +5 </span>
-              </div>
 
-              <div class="col-xs-12 file-download-container">
-                <h4 class="file-download-title">download impex file</h4>
-                <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
-                <span id="download-button" class="btn btn-primary">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
+              <div class="col-xs-12">
+                <h4 class="accordion-trigger">3. Download ImpEx File</h4>
+                <div class="accordion-content">
+                  <div class="file-download-container">
+                    <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
+                    <span id="download-button" class="btn btn-primary" title="Download File" data-toggle="tooltip" data-placement="bottom">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
+                  </div>
+                </div>
+
               </div>
             </div>
 
           </div>
 
-
-          <div class="impex-output" id="impex-output">
-            <div class="impex-output-title">
-              <h5 class="impex-output-title-header">impex output</h5>
-              <div class="impex-output-title-controls">
-                <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body" title="Copy to Clipboard">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
-                <span class="btn btn-primary collapse-output" title="Hide/Show Output"><span class="glyphicon glyphicon-minus"></span></span>
-              </div>
+          <h4 class="accordion-trigger">4. ImpEx Output</h4>
+          <div class="accordion-content">
+            <div class="impex-output" id="impex-output">
+              <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body" title="Copy to Clipboard" data-toggle="tooltip" data-placement="bottom">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
+              <div class="impex-output-body" id="impex-output-body"></div>
             </div>
-            <div class="impex-output-body" id="impex-output-body"></div>
           </div>
 
         </div>
@@ -101,16 +119,17 @@
                   <li class="help-modal-type-list-item">INSERT</li>
                   <li class="help-modal-type-list-item">INSERT_UPDATE</li>
                   <li class="help-modal-type-list-item">DELETE</li>
+                  <li class="help-modal-type-list-item">Enter name of structure in textbox</li>
                 </ul>
                 This is also otional but it you wish to download ImpEX file ready to be executed, this must be selected.
               </li>
               <li class="help-modal-list-item">This is what its all about! The fields to create ImpEX.
                 <ol class="help-modal-table-list">
                   <li class="help-modal-table-list-item">Headers of columns marked Header - 1, Header - 2 etc are for ImpEX fields. These are mandetory as these are mapped to output.</li>
-                  <li class="help-modal-table-list-item">Start putting respective values in table inut fields and see ImpEX being build on the fly!</li>
+                  <li class="help-modal-table-list-item">Start putting respective values in table input fields and see ImpEX being built on the fly!</li>
                 </ol>
               </li>
-              <li class="help-modal-list-item">
+              <li class="help-modal-list-item">Add and remove rows/columns as necessary:
                 <ul class="help-modal-buttons-list">
                   <li class="help-modal-buttons-list">Click &nbsp;<img src="assets/images/+.png" alt="+1" class="help-modal-image"> &nbsp;at right of table to add column and on bottom of table to add row at end.</li>
                   <li class="help-modal-buttons-list">Click &nbsp;<img src="assets/images/-.png" alt="-1" class="help-modal-image"> &nbsp;at right of row to remove the row and on bottom of column to remove the column.</li>
@@ -149,26 +168,27 @@
       <tbody>
         {{#each rows}}
             <tr class="animated fadeIn">
+              <!-- <td>{{inc @index}}</td> -->
               {{#each this}}
                 <td><input type="text" class="impex-input" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
               <td>
-                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}" title="Remove Row">-</div>
+                <div href="#" class="btn btn-block btn-danger removeRow" data-row="{{@index}}" title="Remove Row" data-toggle="tooltip" data-placement="left">Remove Row</div>
               </td>
             </tr>
         {{/each}}
-        <tbody>
+      </tbody>
         <tfoot>
           <tr class="animated fadeIn">
             {{#each rows.[0]}}
-              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}" title="Remove Column">-</div></td>
+              <td><div href="#" class="btn btn-block btn-danger removeColumn" data-col="{{@index}}" title="Remove Column" data-toggle="tooltip" data-placement="bottom">Remove Column</div></td>
             {{/each}}
           </tr>
         </tfoot>
     </script>
 
     <script id="impex-out" type="text/x-handlebars-template">
-        <div class="impex-output-header">{{operation}} {{#each headers}}{{{this}}};{{/each}}</div>
+        <div class="impex-output-header">{{operation}}{{#each headers}}{{{this}}};{{/each}}</div>
 {{#each rows}}<div>{{#each this}};{{this}}{{/each}}</div>
 {{/each}}
     </script>
@@ -176,7 +196,24 @@
   </body>
 
   <footer>
-    Created by Akshay Kulkarni for <a href="https://www.kpit.com/" target="_blank">KPIT Technologies <span class="glyphicon glyphicon-new-window"></span></a>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <a href="https://www.kpit.com/" target="_blank">KPIT Technologies <span class="glyphicon glyphicon-new-window"></span></a>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="text-right"><i class="footer-right" data-toggle="popover" data-placement="top">Automate More Stuff</i></div>
+          <div id="popoverTitle">Credits</div>
+          <div id="popoverContent">
+            <a href="mailto:akshaykulkarni2007@gmail.com"><i class="fa fa-envelope"></i> Akshay Kulkarni</a><br/>
+            <a href="https://github.com/akshaykulkarni2007" target="_blank"><i class="fa fa-github"></i> akshaykulkarni2007 <span class="glyphicon glyphicon-new-window"></span></a><br/>
+            <a href="mailto:yogesh.patki@gmail.com"><i class="fa fa-envelope"></i> Yogesh Patki</a><br/>
+            <a href="https://github.com/yogeshpatki" target="_blank"><i class="fa fa-github"></i> yogeshpatki <span class="glyphicon glyphicon-new-window"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </footer>
 
 </html>

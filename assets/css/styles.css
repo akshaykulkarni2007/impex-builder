@@ -4,6 +4,7 @@
 }
 body {
   font-family: Playfair Display, sans-serif;
+  padding-bottom: 100px;
 }
 .btn {
   border-radius: 0;
@@ -15,7 +16,6 @@ h3.main-title, h4.file-download-title {
   font-family: Oswald;
 }
 .info-button {
-  border-radius: 50%;
   text-transform: lowercase;
   font-size: 15px;
   vertical-align: text-bottom;
@@ -23,14 +23,15 @@ h3.main-title, h4.file-download-title {
   float: right;
   padding: 7px 15px;
 }
+.info-button a {
+  border-radius: 50%;
+  padding: inherit;
+}
 small {
   display: block;
   margin: 20px 0;
   text-transform: capitalize;
   @extend body;
-}
-.build-container {
-  padding-bottom: 500px;
 }
 .table>tbody>tr>td {
   border: none;
@@ -53,27 +54,43 @@ label.impex-header {
 label:focus {
   outline: none;
 }
+.header_form {
+  display: inline-block;
+}
 .header_form .radio {
   margin-right: 20px;
 }
 .header_form .radio input[type=radio] {
   margin-right: 5px;
 }
-.add-row-container {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
+.header_form input {
+  border-radius: 0;
 }
-.add-row-container .add-row {
-  display: block;
-  margin-left: 20px;
+.addColumn {
+  display: inline-block;
+  float: right;
+}
+.main-table-container {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+#main-table tbody tr {
+  counter-increment: rowNumber;
+}
+#main-table tbody tr td:first-child::before {
+  content: counter(rowNumber);
+  display: inline-block;
+  min-width: 30px;
+  padding: 0 .5em;
+  margin-right: 10px;
+  color: #333;
 }
 tfoot tr td .removeColumn {
-  max-width: 35px;
+  /*max-width: 35px;*/
   margin: 0 auto;
 }
-.file-download-container {
-  margin-top: 50px;
+.addRow-container {
+  margin-top: 20px;
 }
 .file-download-container .file-name-input {
   padding: 5px 12px;
@@ -81,40 +98,33 @@ tfoot tr td .removeColumn {
   vertical-align: middle;
 }
 .impex-output {
-  height: 250px;
-  position: fixed;
-  bottom: 50px;
-  left: 0;
-  width: 100%;
-  border-top: 1px solid #a9a9a9;
+  position: relative;
   background: #e6e6e6;
   overflow-y: hidden;
-  transition: height 0.2s ease-in-out;
-}
-.impex-output .impex-output-title {
-  background: #a9a9a9;
-  position: relative;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-}
-.impex-output .impex-output-title h5.impex-output-title-header {
-  color: #fff;
-  text-transform: uppercase;
-  font-family: Oswald;
-}
-.impex-output .impex-output-title-controls {
-  text-align: right;
-}
-.impex-output .impex-output-title span.collapse-output {
-  padding: 9px;
-}
-.impex-output .impex-output-header {
-  min-height: 40px;
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
   overflow-y: scroll;
+  counter-reset: line;
+}
+.impex-output .impex-output-body .impex-output-header {
+  margin-bottom: 20px;
+}
+.impex-output .clipboard {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+#impex-output-body div:not(.impex-output-header):before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  min-width: 30px;
+  border-right: 1px solid #a9a9a9;
+  padding: 0 .5em;
+  margin-right: 10px;
+  color: #333;
 }
 .output-collapsed {
   height: 55px;
@@ -127,7 +137,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 10px 15px;
+  padding: 10px 0;
   font-size: 20px;
   background: #0089CD;
   color: #fff;
@@ -145,6 +155,27 @@ footer a span.glyphicon {
 footer a:hover span {
   display: inherit;
 }
+footer .footer-right {
+  border-bottom: 1px dotted #fff;
+  cursor: pointer;
+}
+
+/* Footer Popover*/
+#popoverTitle, #popoverContent {
+  display: none;
+}
+.popover-title, .popover-content {
+  cursor: auto;
+  color: #000;
+}
+.popover-content a {
+  color: #000 !important;
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 0;
+}
 li.help-modal-list-item {
   margin-bottom: 10px;
 }
@@ -153,6 +184,30 @@ li.help-modal-table-list-item,
 li.help-modal-buttons-list {
   margin: 5px auto;
 }
+
+/* Accordion */
+.accordion-trigger {
+  background: #0089CD;
+  margin: 0 0 20px 0;
+  padding: 10px;
+  font-family: Oswald;
+  color: #fff;
+  cursor: pointer;
+}
+.accordion-content {
+  display: none;
+  /*transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.26s ease;*/
+  margin: 20px 0;
+  padding: 0 20px;
+}
+.accordion-content.active {
+  display: inherit;
+  /*transform: scaleY(1);*/
+}
+
+/* Animations */
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -171,7 +226,35 @@ li.help-modal-buttons-list {
     opacity: 1;
   }
 }
-
 .fadeIn {
   animation-name: fadeIn;
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+.slideOutUp {
+  animation-name: slideOutUp;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
 }
