@@ -21,7 +21,7 @@ $(document).ready(function() {
     height: "90vh"
   });
   $("#impex-output-body").slimScroll ({
-    height: "195px"
+    height: "300px"
   });
 
   $("body").tooltip ({
@@ -217,7 +217,7 @@ function firstColumnWidth() {
     "float": "right",
     "width": labelWidth
   });
-  if($("#main-table").width() >= ($(window).width() -30 )) {
+  if($("#main-table").width() >= ($(window).width() -50 )) {
     $("#main-table tbody tr").each(function() {
       $(this).find("td:first").css({
         "min-width": firstColWidth

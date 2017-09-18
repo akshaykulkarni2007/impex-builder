@@ -126,13 +126,6 @@ tfoot tr td .removeColumn {
   margin-right: 10px;
   color: #333;
 }
-.output-collapsed {
-  height: 55px;
-  overflow-y: hidden;
-}
-.body-collapsed {
-    height: 0;
-}
 footer {
   position: fixed;
   bottom: 0;
