@@ -4,6 +4,7 @@
 }
 body {
   font-family: Playfair Display, sans-serif;
+  padding-bottom: 100px;
 }
 .btn {
   border-radius: 0;
@@ -18,7 +19,6 @@ h3.main-title, h4.file-download-title {
   text-transform: lowercase;
   font-size: 15px;
   vertical-align: text-bottom;
-  display: inline-block;
   float: right;
   padding: 7px 15px;
 }
@@ -30,13 +30,15 @@ small {
   display: block;
   margin: 20px 0;
   text-transform: capitalize;
-  @extend body;
-}
-.build-container {
-  padding-bottom: 400px;
 }
 .table>tbody>tr>td {
   border: none;
+}
+textarea.macro {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  resize: none;
 }
 label.impex-header, label.table-header {
   display: block;
@@ -94,56 +96,31 @@ tfoot tr td .removeColumn {
 .addRow-container {
   margin-top: 20px;
 }
-.file-download-container {
-  margin-top: 40px;
-}
 .file-download-container .file-name-input {
   padding: 5px 12px;
   min-width: 250px;
   vertical-align: middle;
 }
 .impex-output {
-  height: 250px;
-  position: fixed;
-  bottom: 50px;
-  left: 0;
-  width: 100%;
-  border-top: 1px solid #a9a9a9;
+  position: relative;
   background: #e6e6e6;
   overflow-y: hidden;
-  transition: height 0.2s ease-in-out;
-}
-.impex-output .impex-output-title {
-  background: #a9a9a9;
-  position: relative;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-}
-.impex-output .impex-output-title h5.impex-output-title-header {
-  color: #fff;
-  text-transform: uppercase;
-  font-family: Oswald;
-  font-size: 18px;
-  margin-left: -5px;
-}
-.impex-output .impex-output-title-controls {
-  text-align: right;
-}
-.impex-output .impex-output-title span.collapse-output {
-  padding: 9px;
-}
-.impex-output .impex-output-header {
-  min-height: 40px;
-  padding-left: 40px;
-  margin-bottom: 10px;
 }
 .impex-output .impex-output-body {
   padding: 30px 15px;
   overflow-y: scroll;
   counter-reset: line;
 }
-#impex-output-body div:not(.impex-output-header):before {
+.impex-output .impex-output-body .impex-output-header {
+  margin-bottom: 20px;
+}
+.impex-output .clipboard {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+#impex-output-body .output-row:before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
@@ -152,13 +129,6 @@ tfoot tr td .removeColumn {
   padding: 0 .5em;
   margin-right: 10px;
   color: #333;
-}
-.output-collapsed {
-  height: 55px;
-  overflow-y: hidden;
-}
-.body-collapsed {
-    height: 0;
 }
 footer {
   position: fixed;
@@ -186,6 +156,8 @@ footer .footer-right {
   border-bottom: 1px dotted #fff;
   cursor: pointer;
 }
+
+/* Footer Popover*/
 #popoverTitle, #popoverContent {
   display: none;
 }
@@ -196,6 +168,8 @@ footer .footer-right {
 .popover-content a {
   color: #000 !important;
 }
+
+/* Modal */
 .modal-content {
   border-radius: 0;
 }
@@ -207,6 +181,36 @@ li.help-modal-table-list-item,
 li.help-modal-buttons-list {
   margin: 5px auto;
 }
+.help-modal-buttons-list .addColumn {
+  float: none;
+}
+.help-modal-buttons-list .btn.disabled, 
+.help-modal-buttons-list .btn[disabled] {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Accordion */
+.accordion-trigger {
+  background: #0089CD;
+  margin: 0 0 20px 0;
+  padding: 10px;
+  font-family: Oswald;
+  color: #fff;
+  cursor: pointer;
+}
+.accordion-content {
+  display: none;
+  transform-origin: top;
+  transition: transform 0.26s ease;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+.accordion-content.active {
+  display: inherit;
+}
+
+/* Animations */
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -225,7 +229,35 @@ li.help-modal-buttons-list {
     opacity: 1;
   }
 }
-
 .fadeIn {
   animation-name: fadeIn;
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+.slideOutUp {
+  animation-name: slideOutUp;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
 }
