@@ -74,7 +74,7 @@ $(document).ready(function() {
   $(document).on('click','.removeRow',function() {
     var row = $(this).data('row');
 
-    if(row) {
+    if(row >=0 ) {
       impex_data.splice(row,1);
 
       $(document).trigger('content-refresh');
@@ -85,7 +85,7 @@ $(document).ready(function() {
   $(document).on('click','.removeColumn',function() {
     var col = $(this).data('col');
 
-    if(col) {
+    if(col >= 0) {
       for(var row of impex_data) {
         row.splice(col,1);
       }
@@ -274,7 +274,7 @@ function firstColumnWidth() {
   if($("#main-table").width() >= ($(window).width() -50 )) {
     $("#main-table tbody tr").each(function() {
       $(this).find("td:first").css({
-        "min-width": firstColWidth
+        "min-width": firstColWidth + 20
       });
     });
   }

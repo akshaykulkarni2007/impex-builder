@@ -71,7 +71,6 @@ label:focus {
   border-radius: 0;
 }
 .addColumn {
-  display: inline-block;
   float: right;
 }
 .main-table-container {
@@ -86,11 +85,10 @@ label:focus {
   display: inline-block;
   min-width: 30px;
   padding: 0 .5em;
-  margin-right: 10px;
+  margin-right: 20px;
   color: #333;
 }
 tfoot tr td .removeColumn {
-  /*max-width: 35px;*/
   margin: 0 auto;
 }
 .addRow-container {
@@ -107,7 +105,7 @@ tfoot tr td .removeColumn {
   overflow-y: hidden;
 }
 .impex-output .impex-output-body {
-  padding: 30px 15px;
+  padding: 40px 15px;
   overflow-y: scroll;
   counter-reset: line;
 }
