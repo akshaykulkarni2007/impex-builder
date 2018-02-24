@@ -31,6 +31,7 @@
 
                 <h4 class="accordion-trigger">1. Macro and Reference Header</h4>
                 <div class="accordion-content">
+                  <textarea class="macro" placeholder="Impex Headers, Constants"></textarea>
                   <label class="impex-header" contenteditable="true">Reference Header</label>
                 </div>
 
@@ -52,7 +53,7 @@
                     </div>
                   </form>
 
-                  <span class="add-row btn btn-success addColumn" title="Add Column" data-toggle="tooltip" data-placement="bottom">Add Column</span>
+                  <span class="add-row btn btn-success addColumn" title="Add Column" data-toggle="tooltip" data-placement="bottom" data-allow="allow">Add Column</span>
 
                   <div class="clearfix"></div>
 
@@ -71,28 +72,21 @@
 
               </div>
             </div>
-
-            <div class="row">
-
-              <div class="col-xs-12">
-                <h4 class="accordion-trigger">3. Download ImpEx File</h4>
-                <div class="accordion-content">
-                  <div class="file-download-container">
-                    <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
-                    <span id="download-button" class="btn btn-primary" title="Download File" data-toggle="tooltip" data-placement="bottom">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
           </div>
 
-          <h4 class="accordion-trigger">4. ImpEx Output</h4>
+          <h4 class="accordion-trigger">3. ImpEx Output</h4>
           <div class="accordion-content">
             <div class="impex-output" id="impex-output">
               <span class="btn btn-primary clipboard" data-clipboard-target="#impex-output-body" title="Copy to Clipboard" data-toggle="tooltip" data-placement="bottom">Copy&nbsp;&nbsp;<span class="glyphicon glyphicon-copy"></span></span>
               <div class="impex-output-body" id="impex-output-body"></div>
+            </div>
+          </div>
+
+          <h4 class="accordion-trigger">4. Download ImpEx File</h4>
+          <div class="accordion-content">
+            <div class="file-download-container">
+              <input type="text" id="file-name" class="file-name-input" placeholder="Impex File Name">
+              <span id="download-button" class="btn btn-primary" title="Download File" data-toggle="tooltip" data-placement="bottom">Download&nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></span>
             </div>
           </div>
 
@@ -131,9 +125,11 @@
               </li>
               <li class="help-modal-list-item">Add and remove rows/columns as necessary:
                 <ul class="help-modal-buttons-list">
-                  <li class="help-modal-buttons-list">Click &nbsp;<img src="assets/images/+.png" alt="+1" class="help-modal-image"> &nbsp;at right of table to add column and on bottom of table to add row at end.</li>
-                  <li class="help-modal-buttons-list">Click &nbsp;<img src="assets/images/-.png" alt="-1" class="help-modal-image"> &nbsp;at right of row to remove the row and on bottom of column to remove the column.</li>
-                  <li class="help-modal-buttons-list">Click &nbsp;<img src="assets/images/+5.png" alt="+5" class="help-modal-image"> &nbsp;at bottom of table to add 5 rows at end of table.</li>
+                  <li class="help-modal-buttons-list">Click <span class="add-row btn btn-success addRow disabled"> Add Row </span> at bottom of table to add row at end.</li>
+                  <li class="help-modal-buttons-list">Click <span class="add-row btn btn-success addColumn disabled">Add Column</span> at right of table to add column.</li>
+                  <li class="help-modal-buttons-list">Click <span href="#" class="btn btn-danger removeRow disabled">Remove Row</span> at right of row to remove the row.</li>
+                  <li class="help-modal-buttons-list">Click <span href="#" class="btn btn-danger removeColumn disabled">Remove Column</span> at bottom of column to remove the column.</li>
+                  <li class="help-modal-buttons-list">Click <span class="add-row btn btn-success addRow disabled"> Add 5 Rows </span> at bottom of table to add 5 rows at end of table.</li>
                 </ul>
               </li>
               <li class="help-modal-list-item">You can download the output you see in .impex file. Put the name for file in the field and hit "Download" button.</li>
@@ -168,7 +164,6 @@
       <tbody>
         {{#each rows}}
             <tr class="animated fadeIn">
-              <!-- <td>{{inc @index}}</td> -->
               {{#each this}}
                 <td><input type="text" class="impex-input" value="{{this}}" data-col="{{@index}}" data-row="{{@../index}}"/></td>
               {{/each}}
@@ -188,8 +183,9 @@
     </script>
 
     <script id="impex-out" type="text/x-handlebars-template">
-        <div class="impex-output-header">{{operation}}{{#each headers}}{{{this}}};{{/each}}</div>
-{{#each rows}}<div>{{#each this}};{{this}}{{/each}}</div>
+<div class="impex-output-header"><div class="output-macro">{{macro}}</div>
+{{operation}}{{#each headers}}{{{this}}};{{/each}}</div>
+{{#each rows}}<div class="output-row">{{#each this}};{{this}}{{/each}}</div>
 {{/each}}
     </script>
 

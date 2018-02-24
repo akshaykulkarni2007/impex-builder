@@ -19,7 +19,6 @@ h3.main-title, h4.file-download-title {
   text-transform: lowercase;
   font-size: 15px;
   vertical-align: text-bottom;
-  display: inline-block;
   float: right;
   padding: 7px 15px;
 }
@@ -31,10 +30,15 @@ small {
   display: block;
   margin: 20px 0;
   text-transform: capitalize;
-  @extend body;
 }
 .table>tbody>tr>td {
   border: none;
+}
+textarea.macro {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  resize: none;
 }
 label.impex-header, label.table-header {
   display: block;
@@ -116,7 +120,7 @@ tfoot tr td .removeColumn {
   right: 0;
   z-index: 10;
 }
-#impex-output-body div:not(.impex-output-header):before {
+#impex-output-body .output-row:before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
@@ -177,6 +181,14 @@ li.help-modal-table-list-item,
 li.help-modal-buttons-list {
   margin: 5px auto;
 }
+.help-modal-buttons-list .addColumn {
+  float: none;
+}
+.help-modal-buttons-list .btn.disabled, 
+.help-modal-buttons-list .btn[disabled] {
+  opacity: 1;
+  cursor: pointer;
+}
 
 /* Accordion */
 .accordion-trigger {
@@ -189,15 +201,13 @@ li.help-modal-buttons-list {
 }
 .accordion-content {
   display: none;
-  /*transform: scaleY(0);
   transform-origin: top;
-  transition: transform 0.26s ease;*/
+  transition: transform 0.26s ease;
   margin: 20px 0;
   padding: 0 20px;
 }
 .accordion-content.active {
   display: inherit;
-  /*transform: scaleY(1);*/
 }
 
 /* Animations */
