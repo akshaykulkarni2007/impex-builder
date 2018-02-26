@@ -16,14 +16,13 @@ h3.main-title, h4.file-download-title {
   font-family: Oswald;
 }
 .info-button {
-  text-transform: lowercase;
+  text-transform: capitalize;
   font-size: 15px;
   vertical-align: text-bottom;
   float: right;
   padding: 7px 15px;
 }
 .info-button a {
-  border-radius: 50%;
   padding: inherit;
 }
 small {
@@ -75,7 +74,8 @@ label:focus {
 }
 .main-table-container {
   max-width: 100%;
-  overflow-x: scroll;
+  max-height: 80vh;
+  overflow: scroll;
 }
 #main-table tbody tr {
   counter-increment: rowNumber;
@@ -150,21 +150,9 @@ footer a span.glyphicon {
 footer a:hover span {
   display: inherit;
 }
-footer .footer-right {
-  border-bottom: 1px dotted #fff;
-  cursor: pointer;
-}
-
-/* Footer Popover*/
-#popoverTitle, #popoverContent {
-  display: none;
-}
-.popover-title, .popover-content {
-  cursor: auto;
-  color: #000;
-}
-.popover-content a {
-  color: #000 !important;
+footer .footer-right a .fa {
+  padding: 0 10px;
+  font-size: 1.2em;
 }
 
 /* Modal */

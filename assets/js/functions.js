@@ -32,13 +32,8 @@ $(document).ready(function() {
     selector: '[data-toggle="tooltip"]'
   });
 
-  $('[data-toggle="popover"]').popover ({
-    trigger: "hover",
-    title: $("#popoverTitle").html(),
-    content: $("#popoverContent").html(),
-    container: $('[data-toggle="popover"]'),
-    html: true
-  });
+  multiline_placeholder = $("textarea").attr("placeholder").replace(/\\n/g, '\n');
+  $("textarea").attr("placeholder", multiline_placeholder)
 
   printTable(impex_data,headers_data);
   firstColumnWidth();
